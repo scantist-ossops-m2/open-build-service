@@ -2449,7 +2449,7 @@ if ($ex == 0) {
       $kiwitree = 1 if grep {-d "$buildroot/.build.packages/$d/$_"} @files;
       next if $kiwitree;
     }
-    @files = grep {! -l "$buildroot/.build.packages/$d/$_" && -f _} @files;
+    @files = grep {-f "$buildroot/.build.packages/$d/$_"} @files;
     push @send, map {"$buildroot/.build.packages/$d/$_"} @files;
   }
   @send = map {{name => (split('/', $_))[-1], filename => $_}} @send;

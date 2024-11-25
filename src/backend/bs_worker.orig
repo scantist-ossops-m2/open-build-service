@@ -2708,7 +2708,7 @@ if ($ex == 0) {
       $kiwitree = [ grep {-d "$buildroot/.build.packages/$d/$_"} @files ];
       undef $kiwitree unless @$kiwitree;
     }
-    @files = grep {! -l "$buildroot/.build.packages/$d/$_" && -f _} @files;
+    @files = grep {-f "$buildroot/.build.packages/$d/$_"} @files;
     push @send, map {"$buildroot/.build.packages/$d/$_"} @files;
   }
   @send = map {{name => (split('/', $_))[-1], filename => $_}} @send;

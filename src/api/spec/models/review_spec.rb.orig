@@ -231,20 +231,4 @@ RSpec.describe Review do
       it { expect(review.errors[:review_id].count).to eq(0) }
     end
   end
-
-  describe '.new_from_xml_hash' do
-    let(:request_xml) do
-      "<request>
-        <review state='accepted' by_user='#{user}'/>
-      </request>"
-    end
-    let(:request_hash) { Xmlhash.parse(request_xml) }
-    let(:review_hash) { request_hash['review'] }
-
-    subject { Review.new_from_xml_hash(review_hash) }
-
-    it 'initalizes the review in state :new' do
-      expect(subject.state).to eq(:new)
-    end
-  end
 end
